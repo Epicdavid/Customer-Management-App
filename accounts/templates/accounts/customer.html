@@ -1,0 +1,68 @@
+{% extends "cms/base.html" %}
+{%block content %}
+<div class="row" style="margin-top: 30px;">
+    <div class="col md">
+        <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Customer</h5>
+              <a href="#" class="card-link">Update Customer</a>
+              <a href="{% url 'accounts:order' customer.pk %}" class="card-link">Order</a>
+            </div>
+          </div>        
+    </div>
+    <div class="col md">
+        <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Contact Information</h5>
+              <h6 class="card-subtitle mb-2 text-muted">{{customer.email}}</h6>
+              <h6 class="card-subtitle mb-2 text-muted">{{customer.phone}}</h6>
+            </div>
+          </div>        
+    </div>
+    <div class="col md">
+        <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Total Orders</h5>
+              <h6 class="card-subtitle mb-2 text-muted">{{customer_o}}</h6>
+            </div>
+          </div>        
+    </div>
+</div>
+<br>
+<div class="card card-body">
+  <form method="GET">
+      {{myfilter.form}}
+      <input type="submit" value="Filter" class="btn btn-primary">
+  </form>
+  <h6 class="card-subtitle mb-2 text-muted">Search</h6>
+</div>
+<div class="col md">  
+    <hr>
+        <div class="card card-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Product</th>
+                <th scope="col">Category</th>
+                <th scope="col">Ordered On</th>
+                <th scope="col">Status</th>
+                <th scope="col">Update</th>
+                <th scope="col">Remove</th>
+              </tr>
+            </thead>  
+            <tbody>
+              {%for order in orders %}
+              <tr>
+                <td>{{order.product}}</td>
+                <td>{{order.category}}</td>
+                <td>{{order.date_ordered}}</td>
+                <td>{{order.status}}</td>
+                <td><a href="">Update</a></td>
+                <td><a href="">Remove</a></td>
+              </tr>
+              {%endfor%}
+            </tbody>         
+          </table>
+      </div> 
+</div> 
+{%endblock%}

@@ -1,0 +1,7 @@
+{% extends "cms/base.html" %}
+
+<h6>Do you want to delete {{item}}</h6>
+<form method="POST" action="{% url 'account:delete' slug={{item}}">
+    {% csrf_token %}
+    <button class="btm" type="submit">Delete</button>
+</form>
