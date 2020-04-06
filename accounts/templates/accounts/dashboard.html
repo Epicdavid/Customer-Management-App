@@ -28,7 +28,7 @@
                       {{customer.orders}}
                       {%endif%}
                     </td>
-                    <td><a href="{% url 'accounts:customer' pk_t=customer.pk %}">View</a></td>
+                    <td><a href="{% url 'accounts:customer' pk=customer.pk %}">View</a></td>
                   </tr>
                   {% endfor %}
                 </tbody>
