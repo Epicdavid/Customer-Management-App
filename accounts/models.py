@@ -1,13 +1,16 @@
 from django.db import models
 from django.utils.text import slugify 
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Customer(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     name = models.CharField(max_length=200, blank=False)
     Phone = models.CharField(max_length=200)
     email = models.CharField(max_length=200)
     registered = models.DateTimeField(auto_now_add=True)
     slug = models.SlugField(allow_unicode=True,unique=True)
+    profile_pic = models.ImageField(default="download.png",null=True, blank=True)
 
     def __str__(self):
         return self.name

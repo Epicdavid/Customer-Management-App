@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .decorators import *
-
+from django.contrib.auth.models import User
 
 
 # Create your views here.
@@ -19,12 +19,34 @@ def products(request):
 
 
 
-
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['Customer'])
 def profile(request):
-    context={}
+    orders = request.user.customer.orders.all()
+    orders_c = orders.filter(status='Delivered').count()
+    orders_p = orders.filter(status='Pending').count()
+    total_o = orders.count()
+    context={
+        'orders':orders,
+        'total_o': total_o,
+        'delivered': orders_c,
+        'pending': orders_p
+        }
     return render(request, 'accounts/profile.html', context)
 
+def account_setting(request):
+    user = request.user.customer
+    form = forms.CustomerForm(instance=user)
+    if request.method == 'POST':
+        form = forms.CustomerForm(request.POST,request.FILES, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('accounts:edit')
 
+    context={
+        'form':form
+    }
+    return render(request, 'accounts/edit.html', context)
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['Staff'])
