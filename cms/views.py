@@ -43,10 +43,6 @@ def register(request):
             form = forms.UserForm(request.POST)
             if form.is_valid():          
                 user = form.save()
-                group = Group.objects.get(name='Customer')
-                user.groups.add(group)
-                Customer.objects.create(user=user)
-
                 return redirect('home')
             
         context = {

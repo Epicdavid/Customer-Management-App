@@ -10,5 +10,5 @@ urlpatterns=[
     path('update/<pk>', views.update_order, name='update'),
     path('delete/<pk>', views.delete_order, name='delete'),
     path('profile', views.profile, name='user'),
-    path('edit', views.account_setting, name='edit')
+    path('edit', views.account_setting, name='edit'),
 ]
