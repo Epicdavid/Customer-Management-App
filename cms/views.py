@@ -12,6 +12,7 @@ from django.contrib.auth.models import Group
 @admin_only
 def home(request):
     orders = Order.objects.all()
+    orders_c = Order.objects.all().order_by('-date_ordered')[:3]
     products = Product.objects.all()
     customers = Customer.objects.all()
 
@@ -22,7 +23,7 @@ def home(request):
 
 
     context = {
-        'orders': orders,
+        'orders': orders_c,
         'products': products,
         'customers': customers,
         'total_o': total_orders,
@@ -52,6 +53,7 @@ def register(request):
 
 @unauthenticated_user
 def user_login(request):   
+        form = forms.UserForm
         if request.method == 'POST':
             username = request.POST.get('username')
             password = request.POST.get('password')
@@ -61,7 +63,7 @@ def user_login(request):
                 return redirect('home')
             else:
                 messages.info(request,"Username or Password is Incorrect")  
-        context = {}
+        context = {'form':form}
         return render(request,'accounts/login.html',context)
 
 @login_required(login_url='login')

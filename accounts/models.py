@@ -29,10 +29,10 @@ class Product(models.Model):
     Price = models.FloatField(max_length=200)
     Description = models.TextField()
     date_created = models.DateTimeField(auto_now_add=True)
-    tag = models.ForeignKey(Tag, related_name='tags',on_delete=models.SET_NULL,null=True)
+    tag = models.ForeignKey(Tag, related_name='tags',on_delete=models.SET_NULL,null=True, blank=True)
 
-    
-
+    def __str__(self):
+        return self.name
        
 
 class Order(models.Model):
