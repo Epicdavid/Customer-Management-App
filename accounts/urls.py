@@ -12,5 +12,6 @@ urlpatterns=[
     path('delete/<pk><int:c_pk>', views.delete_order, name='delete'),
     path('profile', views.profile, name='user'),
     path('edit', views.account_setting, name='edit'),
+    path('update/<pk>', views.updateCustomer, name='update_c')
 
     ]

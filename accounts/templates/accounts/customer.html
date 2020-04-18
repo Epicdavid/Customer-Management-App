@@ -6,7 +6,7 @@
             <div class="card-body">
               <h5 class="card-title">Customer</h5>
               <p>{{customer.name}}</p>
-              <a class="btn btn-primary btn-sm" href="#" class="card-link">Update Customer</a>
+              <a class="btn btn-primary btn-sm" href="{%url 'accounts:update_c' customer.pk %}" class="card-link">Update Customer</a>
               <a class="btn btn-primary btn-sm" href="{% url 'accounts:order' customer.pk %}" class="card-link">Order</a>
             </div>
           </div>        

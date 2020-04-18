@@ -31,4 +31,4 @@ class ProductForm(ModelForm):
         model = Product
         fields = '__all__'
         exclude = ['date_created']
-        
+      
