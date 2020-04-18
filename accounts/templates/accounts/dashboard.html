@@ -56,8 +56,8 @@
                 <td>{{order.product}}</td>
                 <td>{{order.date_ordered}}</td>
                 <td>{{order.status}}</td>
-                <td><a href="{%url 'accounts:update' pk=order.pk%}" class="btn btn-success btn-sm">Update</a></td>
-                <td><a href="{%url 'accounts:delete' pk=order.pk %}" class="btn btn-danger btn-sm">Remove</a></td>
+                <td><a href="{%url 'accounts:update' pk=order.pk c_pk=order.customer.pk %}" class="btn btn-success btn-sm">Update</a></td>
+                <td><a href="{%url 'accounts:delete' pk=order.pk c_pk=order.customer.pk %}" class="btn btn-danger btn-sm">Remove</a></td>
               </tr>
               {%endfor%}
             </tbody>         

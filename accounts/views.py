@@ -48,6 +48,26 @@ def profile(request):
         }
     return render(request, 'accounts/profile.html', context)
 
+@login_required(login_url='login')
+@admin_only
+def updateCustomer(request,pk):
+    customer= Customer.objects.get(id=pk)
+    form = forms.CustomerForm(instance=customer)
+    if request.method == 'POST':
+        form = forms.CustomerForm(request.POST, instance=customer) 
+        if form.is_valid():
+            form.save()
+            return redirect('accounts:customer',pk=pk)
+        else:
+            form = forms.CustomerForm(instance=customer)
+    context = {
+        'form':form,
+        'customer': customer
+    }        
+    return render(request, 'accounts/update_customer.html', context)    
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['Customer'])
 def account_setting(request):
     user = request.user.customer
     form = forms.CustomerForm(instance=user)
