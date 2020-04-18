@@ -6,4 +6,4 @@ class OrderFilter(django_filters.FilterSet):
     class Meta:
         model = Order
         fields = '__all__'
-        exclude = ['customer']
+        exclude = ['customer','date_ordered']

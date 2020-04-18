@@ -5,8 +5,9 @@
         <div class="card">
             <div class="card-body">
               <h5 class="card-title">Customer</h5>
-              <a href="#" class="card-link">Update Customer</a>
-              <a href="{% url 'accounts:order' customer.pk %}" class="card-link">Order</a>
+              <p>{{customer.name}}</p>
+              <a class="btn btn-primary btn-sm" href="#" class="card-link">Update Customer</a>
+              <a class="btn btn-primary btn-sm" href="{% url 'accounts:order' customer.pk %}" class="card-link">Order</a>
             </div>
           </div>        
     </div>
@@ -30,14 +31,18 @@
 </div>
 <br>
 <div class="card card-body">
+  <h6 class="card-subtitle mb-2 text-muted">Search</h6>
   <form method="GET">
       {{myfilter.form}}
       <input type="submit" value="Filter" class="btn btn-primary">
   </form>
-  <h6 class="card-subtitle mb-2 text-muted">Search</h6>
 </div>
 <div class="col md">  
-    <hr>
+  <br>
+  <br>
+  <hr>
+  <h6 class="card-subtitle mb-2 text-muted">Orders</h6>
+    
         <div class="card card-body">
           <table class="table">
             <thead>
@@ -57,8 +62,8 @@
                 <td>{{order.category}}</td>
                 <td>{{order.date_ordered}}</td>
                 <td>{{order.status}}</td>
-                <td><a href="">Update</a></td>
-                <td><a href="">Remove</a></td>
+                <td><a href="{%url 'accounts:update' pk=order.pk c_pk=customer.pk%}" class="btn btn-success btn-sm">Update</a></td>
+                <td><a href="{%url 'accounts:delete' pk=order.pk c_pk=customer.pk%}" class="btn btn-danger btn-sm">Remove</a></td>
               </tr>
               {%endfor%}
             </tbody>         

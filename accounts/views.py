@@ -14,8 +14,22 @@ from django.contrib.auth.models import User
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['Staff'])
 def products(request):
+    form = forms.ProductForm
     products = Product.objects.all()
-    return render(request, 'accounts/products.html',{'products':products})
+    context = {
+        'products':products,
+        'form': form
+    }
+    if request.method == 'POST':
+        form = forms.ProductForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('accounts:products')
+        else:
+            form = forms.ProductForm    
+    return render(request, 'accounts/products.html',context)
+
+
 
 
 
@@ -58,7 +72,8 @@ def customers(request,pk):
     context = {
         'customer':customer,
         'orders': orders,
-        'myfilter': myfilter
+        'myfilter': myfilter,
+        'customer_o': orders.count()
     }
     return render(request, 'accounts/customer.html', context)  
 
@@ -76,7 +91,7 @@ def order(request,pk):
         formset = order_formset(request.POST, instance=customer)
         if formset.is_valid():
             formset.save()
-            return redirect('') 
+            return redirect('home') 
         else:
             formset = order_formset(instance=customer)        
     context = {
@@ -87,20 +102,20 @@ def order(request,pk):
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['Staff'])
-def update_order(request,pk):
+def update_order(request,pk,c_pk):
     order = Order.objects.get(pk=pk)
     form = forms.OrderForm(instance=order)
     if request.method == 'POST':
         form = forms.OrderForm(request.POST, instance=order)
         if form.is_valid():
             form.save()
-            return redirect('') 
+            return redirect('accounts:customer',pk=c_pk) 
         else:
             form = forms.OrderForm(instance=order)           
     context = {
         'form':form
     }
-    return render(request, 'accounts/order_form.html', context)     
+    return render(request, 'accounts/update_order.html', context)     
 
 
 @login_required(login_url='login')

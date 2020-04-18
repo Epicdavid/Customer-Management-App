@@ -1,5 +1,6 @@
 {% extends "cms/base.html" %}
 {% block content %}
+<br>
   <form method="post">
       {%csrf_token%}
       {{formset.management_form}}
@@ -7,6 +8,6 @@
           {{form}}
           <hr>
       {%endfor%}
-    <button type="submit" class="btn">Order</button>
+    <button type="submit" class="btn btn-primary">Order</button>
   </form>
 {% endblock%}

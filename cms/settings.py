@@ -26,7 +26,7 @@ SECRET_KEY = ')6k(t!y5gq7s*g%5a6e&%*l0tuppwb@h0ry1eqg2%tbmo^@o%2'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['decux.herokuapp.com/','127.0.0.1']
 
 
 # Application definition
@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accounts.apps.AccountsConfig',
-    'django_filters'
+    'django_filters',
+
 ]
 
 MIDDLEWARE = [
@@ -78,8 +79,12 @@ WSGI_APPLICATION = 'cms.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'demoDB',
+        ***REMOVED***
+        ***REMOVED***
+        ***REMOVED***
+        ***REMOVED***
     }
 }
 
@@ -134,3 +139,17 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = ''
 EMAIL_HOST_PASSWORD = ''
+
+
+
+
+***REMOVED***
+***REMOVED***
+***REMOVED***
+AWS_DEFAULT_ACL = None
+AWS_S3_FILE_OVERWRITE = False
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_S3_HOST = 's3.us-east-2.amazonaws.com'
+AWS_S3_REGION_NAME = 'us-east-2'
+
