@@ -153,3 +153,4 @@ STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 AWS_S3_HOST = 's3.us-east-2.amazonaws.com'
 AWS_S3_REGION_NAME = 'us-east-2'
 
+django_heroku.settings(locals())
