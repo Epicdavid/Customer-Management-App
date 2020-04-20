@@ -11,7 +11,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-import django_heroku
+from decouple import config
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -22,10 +23,11 @@ TEMP_DIR = os.path.join(BASE_DIR,'templates')
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ')6k(t!y5gq7s*g%5a6e&%*l0tuppwb@h0ry1eqg2%tbmo^@o%2'
+SECRET_KEY = config('SECRET_KEY')
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', cast=bool)
 
 ALLOWED_HOSTS = ['decux.herokuapp.com/','127.0.0.1']
 
@@ -41,7 +43,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts.apps.AccountsConfig',
     'django_filters',
-
 ]
 
 MIDDLEWARE = [
@@ -82,10 +83,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'demoDB',
-        ***REMOVED***
-        ***REMOVED***
-        ***REMOVED***
-        ***REMOVED***
+        'HOST': config('host'),
+        'USER': config('user'),
+        'PASSWORD': config('pass'),
+        'PORT': config('port'),
     }
 }
 
@@ -131,6 +132,8 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR,'static')]
 
 MEDIA_URL = '/picture/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'static/profilepic')
+#static media settings
+
 
 
 
@@ -144,14 +147,15 @@ EMAIL_HOST_PASSWORD = ''
 
 
 
-***REMOVED***
-***REMOVED***
-***REMOVED***
+AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID') 
+AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')  
+AWS_STORAGE_BUCKET_NAME =  config('AWS_STORAGE_BUCKET_NAME') 
 AWS_DEFAULT_ACL = None
-AWS_S3_FILE_OVERWRITE = False
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-AWS_S3_HOST = 's3.us-east-2.amazonaws.com'
-AWS_S3_REGION_NAME = 'us-east-2'
+AWS_S3_FILE_OVERWRITE = config('AWS_S3_FILE_OVERWRITE', cast=bool)
+AWS_QUERYSTRING_AUTH = config('AWS_QUERYSTRING_AUTH', cast=bool) 
+DEFAULT_FILE_STORAGE =  config('DEFAULT_FILE_STORAGE') 
+STATICFILES_STORAGE =  config('STATICFILES_STORAGE') 
+AWS_S3_HOST = config('AWS_S3_HOST') 
+AWS_S3_REGION_NAME = config('AWS_S3_REGION_NAME') 
 
-django_heroku.settings(locals())
+
