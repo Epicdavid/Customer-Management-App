@@ -159,4 +159,4 @@ AWS_S3_HOST = config('AWS_S3_HOST')
 AWS_S3_REGION_NAME = config('AWS_S3_REGION_NAME') 
 
 
-django_heroku.settings(locals())
+django_heroku.settings(locals(), staticfiles=False)
