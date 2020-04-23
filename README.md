@@ -16,4 +16,4 @@ Each order has a Completed, Pending and Delivered choices etc.
 Filter Customer by products,Orders, and date. etc. 
 
 Admin Screen Grab
-![Screengrab](/decux.JGP)
+![Screengrab](decux.JGP)
