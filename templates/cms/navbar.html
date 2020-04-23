@@ -5,7 +5,7 @@
   }
 </style>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="{% url 'home' %}">Decumy</a>
+    <a class="navbar-brand" href="{% url 'home' %}" style="color: turquoise;">Decux</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -19,7 +19,7 @@
        {%endif%}
     </div>
     {%if user.is_authenticated %}
-    <span class="user">Welcome, <a href="{% url 'accounts:edit' %}">{{ request.user}}</a></span> 
+    <span class="user">Welcome, &nbsp;<a style="text-decoration: none; color: tomato;"href="{% url 'accounts:edit' %}">{{ request.user}}</a></span> 
     <a class="user nav-item nav-link" href="{%url 'logout' %}">Logout</a>
     {%endif%}
   </nav>

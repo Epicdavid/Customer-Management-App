@@ -127,8 +127,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR,'static')]
+
 
 MEDIA_URL = '/picture/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'static/profilepic')
@@ -158,5 +157,11 @@ STATICFILES_STORAGE =  config('STATICFILES_STORAGE')
 AWS_S3_HOST = config('AWS_S3_HOST') 
 AWS_S3_REGION_NAME = config('AWS_S3_REGION_NAME') 
 
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR,'static')]
+AWS_S3_CUSTOM_DOMAIN='%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
+STATICFILES_FINDERS = (           'django.contrib.staticfiles.finders.FileSystemFinder',    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+)
 
 django_heroku.settings(locals(), staticfiles=False)
