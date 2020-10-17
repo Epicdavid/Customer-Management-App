@@ -1,15 +1,31 @@
 from .settings import *
-DEBUG = True
+DEBUG = False
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'decumy',
+        'NAME': 'decumx',
         'HOST': 'localhost',
         'USER': config('user'),
         'PASSWORD': config('pass'),
         'PORT': config('port'),
     }
+}
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+             'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
+        },
+    },
 }
 
 """
