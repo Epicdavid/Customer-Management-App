@@ -29,4 +29,4 @@ AWS_S3_CUSTOM_DOMAIN='%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
 """
 
-django_heroku.settings(locals())
+django_heroku.settings(locals(), staticfiles=True)
