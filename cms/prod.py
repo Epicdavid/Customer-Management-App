@@ -1,17 +1,18 @@
 from .settings import *
+DEBUG = False
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'demoDB',
-        'HOST': config('host'),
+        'NAME': 'decumy',
+        'HOST': 'localhost',
         'USER': config('user'),
         'PASSWORD': config('pass'),
         'PORT': config('port'),
     }
 }
 
-
+"""
 AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID') 
 AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')  
 AWS_STORAGE_BUCKET_NAME =  config('AWS_STORAGE_BUCKET_NAME') 
@@ -26,6 +27,6 @@ AWS_S3_REGION_NAME = config('AWS_S3_REGION_NAME')
 
 AWS_S3_CUSTOM_DOMAIN='%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
-
+"""
 
 django_heroku.settings(locals(), staticfiles=False)

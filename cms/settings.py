@@ -3,7 +3,7 @@
 import os
 from decouple import config
 import django_heroku
-
+import dj_database_url
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMP_DIR = os.path.join(BASE_DIR,'templates')
@@ -17,7 +17,7 @@ SECRET_KEY = config('SECRET_KEY')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', cast=bool)
+
 
 ALLOWED_HOSTS = ['decux.herokuapp.com','127.0.0.1']
 

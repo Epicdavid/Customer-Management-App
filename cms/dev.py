@@ -1,5 +1,5 @@
 from .settings import *
-DEBUG = True
+DEBUG = False
 
 DATABASES = {
     'default': {
@@ -7,4 +7,3 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
