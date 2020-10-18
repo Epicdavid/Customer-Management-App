@@ -25,6 +25,7 @@ ALLOWED_HOSTS = ['decux.herokuapp.com','127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
+    'whitenoise.runserver_nostatic',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -116,9 +117,8 @@ MEDIA_URL = '/picture/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'static/profilepic')
 #static media settings
 
-STATIC_URL = 'static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR,'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
 
 
 
