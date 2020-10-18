@@ -2,19 +2,8 @@ from .settings import *
 DEBUG = False
 import dj_database_url
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'decumx',
-        'HOST': 'localhost',
-        'USER': config('user'),
-        'PASSWORD': config('pass'),
-        'PORT': config('port'),
-    }
-}
-
-
-DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+DATABASES = {}
+DATABASES['default'] = dj_database_url.config(conn_max_age=600)
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
