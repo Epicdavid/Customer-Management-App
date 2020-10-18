@@ -1,5 +1,5 @@
 from .settings import *
-DEBUG = True
+DEBUG = False
 import dj_database_url
 
 DATABASES = {}
