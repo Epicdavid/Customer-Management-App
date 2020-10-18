@@ -28,6 +28,12 @@ LOGGING = {
     },
 }
 
+
+DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
+STATICFILES_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
+DROPBOX_OAUTH2_TOKEN = config('key')
+DROPBOX_ROOT_PATH = 'static'
+
 """
 AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID') 
 AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')  
@@ -45,4 +51,4 @@ AWS_S3_CUSTOM_DOMAIN='%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
 """
 
-django_heroku.settings(locals(), staticfiles=True)
+django_heroku.settings(locals(), staticfiles=False)
