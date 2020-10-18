@@ -32,7 +32,7 @@ LOGGING = {
 DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
 STATICFILES_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
 DROPBOX_OAUTH2_TOKEN = config('key')
-DROPBOX_ROOT_PATH = 'static/'
+
 
 """
 AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID') 
